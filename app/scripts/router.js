@@ -1,0 +1,3 @@
+InstantChat.Router.map(function () {  
+  
+});
