@@ -1,6 +1,6 @@
 var InstantChat = window.InstantChat = Ember.Application.create({
   ready: function() {
-    socket      = io.connect('https://freeinstantchat.herokuapp.com/');
+    socket      = io.connect('http://instantchat.imphan.com/');
     fingerprint = new Fingerprint().get();
   }
 });
