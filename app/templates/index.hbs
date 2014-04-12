@@ -1,5 +1,5 @@
 <div>
-  {{#view InstantChat.MessagesView}}
+  {{#view InstantChat.MessagesView viewName="messages"}}
     <div class="messages" style="height: 100px; overflow: auto;">
       <dl class="dl-horizontal">
         {{#each model}}
@@ -31,9 +31,17 @@
     </div>
     <div class="form-group">
       <div class="col-sm-offset-2 col-sm-10">
-        {{#view InstantChat.SendButtonView}}
-          <button {{action 'sendMessage'}} class="btn btn-primary">Send</button>
-        {{/view}}
+        <div class="row">
+          <div class="col-sm-6 text-left">
+            {{#view InstantChat.SendButtonView}}
+              <button {{action 'sendMessage'}} class="btn btn-primary">Send</button>
+            {{/view}}
+          </div>
+          <div class="col-sm-6 text-right">
+            <button {{action 'skypeEmo'}} class="btn btn-info">Skype</button>
+            <button {{action 'yahooEmo'}} class="btn btn-info">Yahoo</button>
+          </div>
+        </div>
       </div>
     </div>
   </form>

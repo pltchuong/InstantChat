@@ -28,7 +28,7 @@ InstantChat.IndexController = Ember.ObjectController.extend({
     sendMessage: function() {
       if(!this.get('message')) return;
     
-      var store = this.store;
+      store = this.store;
       var message = {
         fingerprint : fingerprint,
         sender      : this.get('sender') ? this.get('sender') : fingerprint,
@@ -54,6 +54,5 @@ InstantChat.IndexController = Ember.ObjectController.extend({
       
       socket.emit('updateSender', sender, fingerprint);
     }
-    
   }
 });
