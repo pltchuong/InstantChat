@@ -19,7 +19,7 @@ Ember.Handlebars.helper('messageHelper', function(value, options) {
   // remove bad words
   var filter = ['fuck', 'ass', 'shit'];
   filter.forEach(function(word) {
-    value = value.replace(word, '*****');
+    value = value.replace(new RegExp('\\b' + word + '\\b', 'gi'), '*****');
   });
   
   // process something else
