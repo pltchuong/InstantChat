@@ -1,6 +1,6 @@
 <div>
   {{#view InstantChat.MessagesView viewName="messages"}}
-    <div class="messages" style="height: 200px; overflow: auto;">
+    <div class="messages">
       <dl class="dl-horizontal">
         {{#each model}}
           <dt><small><span class="text-primary">{{sender}}</span></small></dt>
@@ -16,30 +16,31 @@
     <div class="form-group">
       <label for="sender" class="col-sm-2 control-label">Your name</label>
       <div class="col-sm-10">
-        {{#view InstantChat.SenderView}}
-          {{input type="text" id="sender" name="sender" class="form-control" value=sender}}
-        {{/view}}
+        {{view InstantChat.SenderTextField class="form-control" value=sender}}
       </div>
     </div>
     <div class="form-group">
       <label for="message" class="col-sm-2 control-label">Your message</label>
       <div class="col-sm-10">
-        {{#view InstantChat.MessageView}}
-          {{textarea id="message" name="message" class="form-control" rows="3" value=message}}
-        {{/view}}
+        {{view InstantChat.MessageTextArea class="form-control form-control-editable" contenteditable="" valueBinding="blogpost.content"}}
+        <em class="help-block">
+          <small>
+            Hint: 
+            <br/>- Press Enter to send your message.
+            <br/>- Ctrl-V to paste text and image from clipboard.
+            <br/>- Firefox user: Right click &rarr; View Image <b>with</b> Ctrl key pressed to view full image.
+          </small>
+        </em>
       </div>
     </div>
     <div class="form-group">
       <div class="col-sm-offset-2 col-sm-10">
         <div class="row">
-          <div class="col-sm-6 text-left">
-            {{#view InstantChat.SendButtonView}}
-              <button {{action 'sendMessage'}} class="btn btn-primary">Send</button>
-            {{/view}}
-          </div>
-          <div class="col-sm-6 text-right">
-            <button {{action 'skypeEmo'}} class="btn btn-info">Skype</button>
-            <button {{action 'yahooEmo'}} class="btn btn-info">Yahoo</button>
+          <div class="col-sm-12 text-right">
+            <!--
+              <button {{action 'skypeEmo'}} class="btn btn-info">Skype</button>
+              <button {{action 'yahooEmo'}} class="btn btn-info">Yahoo</button>
+            -->
           </div>
         </div>
       </div>

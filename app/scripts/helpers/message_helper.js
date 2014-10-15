@@ -210,6 +210,9 @@ Ember.Handlebars.helper('messageHelper', function(value, options) {
     value = value.replace(new RegExp('\\b' + word + '\\b', 'gi'), '*****');
   });
   
+  // add link to image
+  //value = value.replace(/<img src="([^"]*)"[^>]*>/gi, '<a href="$1" target="_blank"><img src="$1" /></a>')
+
   // process something else
   
   return new Handlebars.SafeString(value);
