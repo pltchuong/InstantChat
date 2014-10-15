@@ -9,9 +9,6 @@ InstantChat.IndexController = Ember.ObjectController.extend({
         sender      : message.sender,
         message     : message.message
       }).save();
-      
-      // TODO: break MVC ?
-      document.title = message.message;
     });
     
     socket.on('updateSender', function(sender, fingerprint) {
@@ -37,9 +34,6 @@ InstantChat.IndexController = Ember.ObjectController.extend({
       
       store.createRecord('message', message).save();
       socket.emit('sendMessage', message);
-      
-      // TODO: break MVC ?
-      document.title = message.message;
     },
     
     updateSender: function() {

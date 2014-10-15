@@ -1,6 +1,6 @@
 InstantChat.MessagesView = Ember.View.extend({
   scrollToBottom: function() {
-    jQuery('.messages').scrollTop(jQuery('.messages')[0].scrollHeight);
+    $('.messages').scrollTop($('.messages')[0].scrollHeight);
   }.observes('controller.model.length')
 });
 
@@ -25,7 +25,6 @@ InstantChat.MessageTextArea = Ember.ContenteditableView.extend({
         http://stackoverflow.com/questions/6333814/how-does-the-paste-image-from-clipboard-functionality-work-in-gmail-and-google-c
     */
 
-    // If Webkit
     if (_e.clipboardData.items) {
       var items = _e.clipboardData.items;
       if (items) {
@@ -36,7 +35,8 @@ InstantChat.MessageTextArea = Ember.ContenteditableView.extend({
             reader.onload = function(event) {
               var image = document.createElement('img');
               image.src = event.target.result;
-              _this.set('value', _this.$().html(image));
+              _this.$().html('<img src="' + event.target.result + '" />').click();
+              _this.set('value', _this.$().html());
             };
             reader.readAsDataURL(blob);
           }
