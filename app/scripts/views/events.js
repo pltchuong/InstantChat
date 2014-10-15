@@ -5,6 +5,7 @@ InstantChat.MessagesView = Ember.View.extend({
 });
 
 InstantChat.MessageTextArea = Ember.ContenteditableView.extend({
+
   keyPress: function(event) {
     if(!event.shiftKey && event.keyCode === 13) {
       this.get('controller').set('message', this.$().html());
@@ -13,10 +14,8 @@ InstantChat.MessageTextArea = Ember.ContenteditableView.extend({
       return false;
     }
   },
-  paste: function(event) {
-    var _e = event.originalEvent;
-    var _this = this;
 
+  paste: function(event) {
     /*
       Credits: 
         https://github.com/vladmalik/pasteimage/
@@ -24,25 +23,45 @@ InstantChat.MessageTextArea = Ember.ContenteditableView.extend({
         http://stackoverflow.com/questions/11850970/javascript-blob-object-to-base64
         http://stackoverflow.com/questions/6333814/how-does-the-paste-image-from-clipboard-functionality-work-in-gmail-and-google-c
     */
-
-    if (_e.clipboardData.items) {
-      var items = _e.clipboardData.items;
-      if (items) {
-        for (var i = 0; i < items.length; i++) {
-          if (items[i].type.indexOf("image") !== -1) {
-            var blob = items[i].getAsFile();
-            var reader = new FileReader();
-            reader.onload = function(event) {
-              _this.$().html('<img src="' + event.target.result + '" />');
-            };
-            reader.readAsDataURL(blob);
-          }
+    var _e = event.originalEvent;
+    var _this = this;
+    var items = _e.clipboardData.items;
+    if (items) {
+      for (var i = 0; i < items.length; i++) {
+        if (items[i].type.indexOf("image") !== -1) {
+          var blob = items[i].getAsFile();
+          var reader = new FileReader();
+          reader.onload = function(event) {
+            _this.$().append('<img src="' + event.target.result + '" />');
+          };
+          reader.readAsDataURL(blob);
         }
-      } else { 
-        alert("Webkit - Nothing found in the clipboard!");
       }
     }
+  },
+
+  drop: function(event) {
+     /*
+      Credits: 
+        http://stackoverflow.com/questions/23548745/drag-and-drop-image-file-into-contenteditable-div-works-fine-in-ff-fails-miser
+    */
+    var _e = event.originalEvent;
+    var _this = this;
+    var files = _e.dataTransfer.files;
+    if (files) {
+      for (var i = 0; i < files.length; i++) {
+        if (files[i].type.indexOf("image") !== -1) {
+          var reader = new FileReader();
+          reader.onload = function(event) {
+            _this.$().append('<img src="' + event.target.result + '" />');
+          };
+          reader.readAsDataURL(files[i]);
+        }
+      }
+    }
+    return false;
   }
+
 });
 
 InstantChat.SenderTextField = Ember.TextField.extend({

@@ -4,7 +4,8 @@ var InstantChat = window.InstantChat = Ember.Application.create({
     fingerprint = new Fingerprint().get();
   },
   customEvents: {
-    paste: "paste"
+    paste: "paste",
+    drop: "drop"
   }
 });
 
