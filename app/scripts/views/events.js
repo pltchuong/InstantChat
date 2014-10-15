@@ -7,7 +7,7 @@ InstantChat.MessagesView = Ember.View.extend({
 InstantChat.MessageTextArea = Ember.ContenteditableView.extend({
   keyPress: function(event) {
     if(!event.shiftKey && event.keyCode === 13) {
-      this.get('controller').set('message', this.get('value'));
+      this.get('controller').set('message', this.$().html());
       this.get('controller').send('sendMessage');
       this.set('value', this.$().html(''));
       return false;
@@ -33,10 +33,7 @@ InstantChat.MessageTextArea = Ember.ContenteditableView.extend({
             var blob = items[i].getAsFile();
             var reader = new FileReader();
             reader.onload = function(event) {
-              var image = document.createElement('img');
-              image.src = event.target.result;
-              _this.$().html('<img src="' + event.target.result + '" />').click();
-              _this.set('value', _this.$().html());
+              _this.$().html('<img src="' + event.target.result + '" />');
             };
             reader.readAsDataURL(blob);
           }
