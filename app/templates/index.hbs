@@ -3,8 +3,11 @@
     <div class="messages">
       <dl class="dl-horizontal">
         {{#each model}}
-          <dt><small><span class="text-primary">{{sender}}</span></small></dt>
-          <dd>{{messageHelper message}}</dd>
+          <dt>{{#view InstantChat.MessageSender class="text-primary" dataBinding="this"}}{{sender}}{{/view}}</dt>
+          <dd>
+            {{messageHelper message}}
+            {{#view InstantChat.MessageDate dataBinding="this"}}{{formatDate created 'hh:mm A'}}{{/view}}
+          </dd>
         {{/each}}
       </dl>
     </div>
@@ -22,7 +25,7 @@
     <div class="form-group">
       <label for="message" class="col-sm-2 control-label">Your message</label>
       <div class="col-sm-10">
-        {{view InstantChat.MessageTextArea class="form-control form-control-editable" contenteditable="" valueBinding="blogpost.content"}}
+        {{view InstantChat.MessageTextArea class="form-control form-control-editable" contenteditable=""}}
         <em class="help-block">
           <small>
             Hint: 

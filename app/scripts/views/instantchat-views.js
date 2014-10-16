@@ -4,6 +4,32 @@ InstantChat.MessagesView = Ember.View.extend({
   }.observes('controller.model.length')
 });
 
+InstantChat.MessageDate = Ember.View.extend({
+  tagName: 'small',
+  attributeBindings: ['title'],
+  title: function() {
+    return moment(this.get('data').get('created')).format('dddd, MMMM D, YYYY hh:mm A');
+  }.property()
+});
+
+InstantChat.MessageSender = Ember.View.extend({
+  tagName: 'small',
+  classNameBindings: ['isAuthor:text-danger'],
+  attributeBindings: ['title'],
+  isAuthor: function() {
+    return fingerprint == this.get('data').get('fingerprint');
+  }.property(),
+  title: function() {
+    return this.get('data').get('sender');
+  }.property('data.sender')
+});
+
+InstantChat.SenderTextField = Ember.TextField.extend({
+  keyUp: function(event) {
+    this.get('targetObject').send('updateSender');
+  }
+});
+
 InstantChat.MessageTextArea = Ember.ContenteditableView.extend({
 
   keyPress: function(event) {
@@ -62,10 +88,4 @@ InstantChat.MessageTextArea = Ember.ContenteditableView.extend({
     return false;
   }
 
-});
-
-InstantChat.SenderTextField = Ember.TextField.extend({
-  keyUp: function(event) {
-    this.get('targetObject').send('updateSender');
-  }
 });

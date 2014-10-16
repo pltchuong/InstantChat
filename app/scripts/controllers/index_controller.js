@@ -7,7 +7,9 @@ InstantChat.IndexController = Ember.ObjectController.extend({
       store.createRecord('message', {
         fingerprint : message.fingerprint,
         sender      : message.sender,
-        message     : message.message
+        message     : message.message,
+        created     : new Date(),
+        updated     : new Date()
       }).save();
     });
     
@@ -29,7 +31,9 @@ InstantChat.IndexController = Ember.ObjectController.extend({
       var message = {
         fingerprint : fingerprint,
         sender      : this.get('sender') ? this.get('sender') : fingerprint,
-        message     : this.get('message')
+        message     : this.get('message'),
+        created     : new Date(),
+        updated     : new Date()
       };
       
       store.createRecord('message', message).save();

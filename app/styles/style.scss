@@ -6,6 +6,9 @@ $icon-font-path: "../styles/fonts/"; // Change the path to the fonts
 .form-control-editable {height: auto; min-height: 34px; max-height: 120px; overflow-y: auto;}
 .form-control-editable img {max-height: 105px;}
 .messages {height: 300px; overflow: auto; resize: vertical;}
-.messages dt {resize: none;}
+.messages dt {resize: none; padding-top: 3px;}
+.messages dd {position: relative; padding: 3px 55px 0 3px;}
+.messages dd:hover {background: #fafafa;}
 .messages dd * {word-wrap: break-word;}
-.messages dd img.picture {max-width: 98%; height: auto; display: block;}
+.messages dd img.picture {max-width: 100%; height: auto; display: block;}
+.messages dd small:last-child {position: absolute; top: 3px; right: 3px; font-size: smaller; color: #a1a1a1;}
