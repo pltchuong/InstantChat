@@ -8,4 +8,4 @@ $icon-font-path: "../styles/fonts/"; // Change the path to the fonts
 .messages {height: 300px; overflow: auto; resize: vertical;}
 .messages dt {resize: none;}
 .messages dd * {word-wrap: break-word;}
-.messages dd img {max-width: 98%; height: auto; display: block;}
+.messages dd img.picture {max-width: 98%; height: auto; display: block;}

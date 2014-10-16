@@ -1,6 +1,6 @@
 var InstantChat = window.InstantChat = Ember.Application.create({
   ready: function() {
-    socket      = io.connect('http://instantchat.imphan.com/');
+    socket      = io.connect('http://localhost:9000/');
     fingerprint = new Fingerprint().get();
   },
   customEvents: {
