@@ -5,6 +5,10 @@ Ember.Handlebars.helper('messageHelper', function(value, options) {
   // add link to image
   value = value.replace(/<img src="([^"]*)"[^>]*>/gi, '<a href="$1" target="_blank"><img class="picture" src="$1" /></a>')
   var isPicture = value == originalValue ? false : true;
+  
+  // add link to text
+  value = value.replace(/(http[^\s]*)/gi, '<a href="$1" target="_blank">$1</a>')
+  var iSlink = value == originalValue ? false : true;
 
   // add emoticons
   var emoticons = options.data.view.get('controller').get('emoticons');
