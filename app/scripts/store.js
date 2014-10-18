@@ -1,3 +1,4 @@
+/*
 InstantChat.ApplicationAdapter = DS.FixtureAdapter.extend({
   queryFixtures: function(fixtures, query, type) {
     return fixtures.filter(function(item) {
@@ -7,4 +8,10 @@ InstantChat.ApplicationAdapter = DS.FixtureAdapter.extend({
       return true;
     });
   }
+});
+*/
+
+InstantChat.ApplicationSerializer = DS.LSSerializer.extend();
+InstantChat.ApplicationAdapter = DS.LSAdapter.extend({
+    namespace: 'InstantChat'
 });
